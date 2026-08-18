@@ -46,6 +46,34 @@
     box-shadow: 0 4px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
   }
 
+  /* Project card hover: lift + intensified brand border glow */
+  .project-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  .project-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(30, 173, 160, 0.35);
+    box-shadow:
+      0 8px 48px rgba(0,0,0,0.5),
+      0 0 0 1px rgba(30,173,160,0.25),
+      0 0 32px rgba(30,173,160,0.12),
+      inset 0 1px 0 rgba(255,255,255,0.07);
+  }
+
+  /* Skill card hover: same lift treatment as project-card */
+  .skill-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  .skill-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(30, 173, 160, 0.3);
+    box-shadow:
+      0 6px 36px rgba(0,0,0,0.45),
+      0 0 0 1px rgba(30,173,160,0.2),
+      0 0 24px rgba(30,173,160,0.1),
+      inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+
   /* Terminal-style code block */
   .terminal {
     @apply bg-surface-900 border border-brand-900/50 rounded-xl font-mono text-sm;
