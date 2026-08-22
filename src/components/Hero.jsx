@@ -140,7 +140,7 @@ export default function Hero() {
           <pre className="text-xs leading-relaxed">
             <span className="text-brand-400">$</span>
             <span className="text-slate-300"> whoami</span>{'\n'}
-            <span className="text-slate-400">  → AI Engineer @ Pune, India</span>{'\n'}
+            <span className="text-slate-400">  → AI Engineer @ Navi Mumbai, India</span>{'\n'}
             <span className="text-brand-400">$</span>
             <span className="text-slate-300"> skills --top</span>{'\n'}
             <span className="text-slate-400">  → PyTorch · LangChain · FastAPI · React</span>{'\n'}

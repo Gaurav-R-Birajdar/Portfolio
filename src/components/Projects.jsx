@@ -41,6 +41,40 @@ const PROJECTS = [
       { label: 'Research Paper / Proceeding', href: 'https://ieeexplore.ieee.org/abstract/document/11330959', icon: 'paper' },
     ],
   },
+  {
+    id: 'asyncflow-engine',
+    title: 'AsyncFlow Engine',
+    subtitle: 'Deterministic LLM Orchestrator',
+    description:
+      'A hardware-constrained, asynchronous AI workflow engine built to eliminate API timeouts and data hallucinations. Utilizes distributed Redis queues and strict Pydantic schema enforcement to force local LLMs to output machine-readable JSON.',
+    tags: [
+      { label: 'Python' },
+      { label: 'FastAPI' },
+      { label: 'Redis' },
+      { label: 'RQ' },
+      { label: 'Llama 3.1' },
+      { label: 'Pydantic' },
+    ],
+    links: [
+      { label: 'GitHub Repository', href: 'https://github.com/Gaurav-R-Birajdar/AsyncFlow-Engine', icon: 'github' },
+    ],
+  },
+  {
+    id: 'personal-ai-workspace',
+    title: 'Personal AI Workspace',
+    subtitle: 'Local AI Development Environment',
+    description:
+      'A localized, AI-driven development environment integrating custom language models for automated task execution, content curation, and workflow acceleration without relying on external cloud APIs.',
+    tags: [
+      { label: 'Python' },
+      { label: 'Local LLM' },
+      { label: 'Ollama' },
+      { label: 'Prompt Engineering' },
+    ],
+    links: [
+      { label: 'GitHub Repository', href: 'https://github.com/Gaurav-R-Birajdar/Image-Generator', icon: 'github' },
+    ],
+  },
 ];
 
 // ─── Icon Components ───────────────────────────────────────────────────────────

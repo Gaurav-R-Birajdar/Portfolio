@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 // --- Abstract Visual Sub-component ---------------------------------------------
 
@@ -28,14 +28,13 @@ const AbstractVisual = () => (
         <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/70" />
         <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/70" />
       </div>
-      <p className="text-brand-500 font-mono">$ whoami</p>
-      <p className="text-slate-300 mt-1">Gaurav R. Birajdar</p>
-      <p className="text-brand-500 font-mono mt-2">$ cat degree.txt</p>
-      <p className="text-slate-300 mt-1">M.Tech · Computer Engineering</p>
-      <p className="text-brand-500 font-mono mt-2">$ cat focus.txt</p>
-      <p className="text-slate-300 mt-1">Deterministic GenAI</p>
-      <p className="text-slate-300">Federated Learning</p>
-      <p className="text-slate-300">Scalable Backends</p>
+      <p className="text-brand-500 font-mono">{'>>> '}engineer = Profile(name=<span className="text-emerald-400">"Gaurav R. Birajdar"</span>)</p>
+      <p className="text-brand-500 font-mono mt-3">{'>>> '}engineer.education</p>
+      <p className="text-slate-300 mt-1">&quot;M.Tech - Computer Engineering&quot;</p>
+      <p className="text-brand-500 font-mono mt-3">{'>>> '}engineer.focus_areas</p>
+      <p className="text-slate-300 mt-1">[<span className="text-amber-300">"Deterministic GenAI"</span>,</p>
+      <p className="text-slate-300 pl-1"><span className="text-amber-300">"Federated Learning"</span>,</p>
+      <p className="text-slate-300 pl-1"><span className="text-amber-300">"Scalable Backends"</span>]</p>
       <p className="text-brand-400 mt-2 animate-[blink_1s_step-end_infinite]">█</p>
     </div>
   </div>

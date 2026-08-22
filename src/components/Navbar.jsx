@@ -33,11 +33,9 @@ export default function Navbar() {
         {/* Logo / monogram */}
         <a
           href="#hero"
-          className="font-mono text-brand-400 font-semibold text-lg tracking-tight hover:text-brand-300 transition-colors"
+          className="font-sans text-brand-400 font-bold text-lg tracking-tight hover:text-brand-300 transition-colors"
         >
-          <span className="text-slate-500">{'<'}</span>
-          GRB
-          <span className="text-slate-500">{' />'}</span>
+          <span style={{ fontWeight: 800, letterSpacing: '-0.01em' }}>Gaurav R. Birajdar</span>
         </a>
 
         {/* Desktop links */}

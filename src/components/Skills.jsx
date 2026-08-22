@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 // --- Skill Data ----------------------------------------------------------------
 
@@ -30,6 +30,8 @@ const SKILL_GROUPS = [
       { name: 'Python' },
       { name: 'FastAPI' },
       { name: 'SQLite' },
+      { name: 'Redis' },
+      { name: 'RQ (Redis Queue)' },
       { name: 'Deterministic Data Flow' },
       { name: 'Docker' },
       { name: 'REST API Design' },
