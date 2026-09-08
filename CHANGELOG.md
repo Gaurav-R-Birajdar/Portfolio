@@ -6,6 +6,131 @@ Versioning follows `v<major>.<prompt-iteration>` � every dev prompt increments
 
 ---
 
+## [v1.4] - 2026-09-08
+
+### Added
+
+#### `.github/workflows/deploy.yml` — GitHub Actions CI/CD [NEW]
+- Workflow triggers on every push to `main` branch.
+- **Build job**: Checks out repo → sets up Node 20 with `npm` cache → runs `npm ci` → runs `npm run build` (Vite outputs to `docs/`) → uploads `docs/` as a Pages artifact.
+- **Deploy job**: Receives the artifact from the build job and deploys to GitHub Pages via `actions/deploy-pages@v4`.
+- Permissions scoped to minimum required: `pages: write`, `id-token: write`.
+- Concurrency group `pages` with `cancel-in-progress: true` — only one live deployment at a time.
+- Result: **pushing to `main` now automatically updates the live site** at `https://Gaurav-R-Birajdar.github.io/Portfolio` with no manual `npm run deploy` step needed.
+
+### Changed
+
+#### `package.json` — Deploy Script
+- `"deploy": "gh-pages -d dist"` → `"deploy": "gh-pages -d docs"` — aligns the manual deploy fallback with the actual Vite `outDir`.
+
+### Removed
+
+#### `dist/` — Stale Build Output Directory
+- Deleted the `dist/` folder; it was a leftover from before `vite.config.js` set `outDir: 'docs'`.
+- All production builds now output exclusively to `docs/`.
+
+### Milestone
+- **Push to `main` = live site update.** GitHub Actions handles build + deploy automatically.
+
+---
+
+## [v1.3] - 2026-09-04
+
+### Changed
+
+#### `src/components/SlideProjects.jsx` — Project Grid (Slide 3)
+- **Replaced** `personal-ai-workspace` card with `traceflow-proxy` in the bottom-right grid slot.
+  - Removed: *Personal AI Workspace* (generic Ollama/Prompt Engineering entry — low signal for technical evaluators)
+  - Added: **TraceFlow Proxy** — subtitle `ZERO-CLOUD OBSERVABILITY`, description highlights deterministic Pydantic schema enforcement, hallucination drift detection, and async SQLite WAL writes for sub-millisecond latency. Tags: `Python · FastAPI · SQLite WAL · Pydantic`. Link: `github.com/Gaurav-R-Birajdar/TraceFlow-Prox`.
+- **Removed** the dashed TraceFlow coming-soon placeholder strip — no longer needed since the real card fills the slot.
+- Grid is now a clean 2×2: AsyncFlow Engine · Vyngo Voice Search · Federated Learning · TraceFlow Proxy.
+
+---
+
+## [v1.2] - 2026-09-04 🔧 Hotfix
+
+### Fixed
+
+#### `src/components/Carousel.jsx` — Scroll Container Architecture
+- **Root cause**: Custom `.snap-container` CSS class lacked `overflow-x: scroll`, so slides were rendered as a standard flex row with no horizontal scroll axis. Compound issue: outer `div.overflow-hidden` would have suppressed scrolling even if the inner rule existed.
+- **Fix**: Removed the `overflow-hidden` outer wrapper entirely. The scroll container is now the **root element** of the component using Tailwind-native classes: `flex overflow-x-auto snap-x snap-mandatory h-screen w-full hide-scrollbar`. No intermediate wrapper.
+- Each slide now uses `min-w-full flex-shrink-0 snap-center h-screen overflow-y-auto` — forcing exactly 100vw width per snap point.
+- Navigation overlay (chevrons, dots, counter/label) rendered via `<>...</>` React Fragment as siblings of the scroll container; `position: fixed` keeps them viewport-relative regardless of scroll offset.
+
+#### `src/index.css` — CSS Cleanup
+- Removed `overflow: hidden` from `html, body` — no longer needed since the carousel is the root scroller (not a nested element inside an `overflow-hidden` shell).
+- Added `.hide-scrollbar` utility: `scrollbar-width: none` (Firefox), `-ms-overflow-style: none` (IE/Edge), `::-webkit-scrollbar { display: none }` (Chrome/Safari).
+- `.snap-container` CSS class retained (stripped to `scroll-snap-type + -webkit-overflow-scrolling`) for reference; `overflow-x` now driven by Tailwind directly.
+
+---
+
+## [v1.1] - 2026-09-04 🎠
+
+### Added
+
+#### `src/components/Carousel.jsx` — Horizontal Carousel Shell [NEW]
+- Full-viewport scroll-snap carousel (`scroll-snap-type: x mandatory`) with 3 slide slots.
+- State: `activeSlide` (0–2) synced bidirectionally via `onScroll` handler (Math.round rounding).
+- **Left / right chevron buttons** — glassmorphism style, hidden at boundary slides via `opacity-0 pointer-events-none`.
+- **Dot indicator nav** — active dot expands width (`w-5`) with brand glow (`box-shadow: 0 0 8px rgba(30,173,160,0.6)`); all dots clickable.
+- **Slide counter** (bottom-left): `01 / 03` format; **slide label** (bottom-right): `Hero / Profile / Projects`.
+- **Keyboard navigation**: `ArrowLeft` / `ArrowRight` key listeners via `useEffect`; debounced with `isScrollingRef` to prevent rapid-fire during animation.
+- `scrollToSlide` uses `element.scrollTo({ left: idx * clientWidth, behavior: 'smooth' })`.
+
+#### `src/components/SlideProfile.jsx` — Slide 2: Engineer Profile [NEW]
+- **Left column**: Python REPL terminal bio (`engineer_profile.py`) — condensed from `About.jsx`.
+- **Right column**: Compact 3-category tech stack grid (Applied AI · Backend · Frontend & Tooling) in a glassmorphism panel — condensed from `Skills.jsx`.
+- Stat pills (M.Tech / IEEE / Local LLM) retained from `About.jsx`.
+- `IntersectionObserver` removed; replaced with CSS mount animations (`animate-fade-in` + staggered `animation-delay`).
+
+#### `src/components/SlideProjects.jsx` — Slide 3: Proof of Work [NEW]
+- 2×2 project card grid (compact `ProjectCard` variant, `p-5` instead of `p-7`, `text-xs` descriptions).
+- **AsyncFlow Engine** — `phase` badge added: `"Phase 3 · DLQ Replay ✓"` in emerald, description updated with 3-phase architecture (Redis Queue → Pydantic schema enforcement → DLQ Replay).
+- **TraceFlow Proxy** coming-soon slot: dashed-border placeholder strip at bottom of grid.
+- Footer credit strip embedded at slide bottom (`<GRB /> · © 2026 · sys.exit(0)`).
+
+### Changed
+
+#### `src/components/Hero.jsx` — Slide 1: Hero & Conversion
+- **Removed** `ROLES` array, `useTypewriter` hook, and rotating typewriter `<p>` entirely.
+- **Replaced** with locked LinkedIn 100-day experiment headline: `"Backend & AI Engineer"` + sub-line `"Python · FastAPI · Redis · Local LLMs"`.
+- **Moved** entire "Initiate Connection" block (previously in `Contact.jsx`) to center of Slide 1 — `AvailabilityBadge` + 3 contact buttons (`LinkedIn`, `GitHub`, `Secure Contact Form`) visible on first load.
+- Scroll-down indicator replaced with subtle right-pointing chevron hint.
+- `terminal` `system_status.sh` block updated: `skills --top` now reads `Python · FastAPI · Redis · Local LLMs`.
+
+#### `src/App.jsx` — Root Application Shell
+- Removed all section imports (`Navbar`, `Hero`, `About`, `Skills`, `Projects`, `Contact`, `Footer`).
+- Renders a single `<Carousel />` component; Carousel owns all slide composition.
+
+#### `src/index.css` — Global Styles
+- `html, body { overflow: hidden; height: 100%; }` — prevents document-level scroll bleed.
+- `scroll-behavior: auto` on `html` — prevents global smooth-scroll from interfering with carousel `scrollTo`.
+- Added `.snap-container` — `scroll-snap-type: x mandatory`, scrollbar hidden (all 3 browser vendors).
+- Added `.snap-slide` — `scroll-snap-align: start; flex-shrink: 0`.
+- Added `.carousel-nav-btn` — glassmorphism fixed-position chevron button with brand hover glow.
+- Added `.carousel-dot` and `.carousel-dot-active` — expanding pill with `box-shadow` brand glow on active.
+
+### Fixed
+
+#### `src/components/SlideProfile.jsx` — Stack Data
+- Removed `{ name: 'HPC / Cluster Environments' }` from `Frontend & Tooling` category per public dev log operating rules.
+- Replaced with `{ name: 'Docker' }`.
+
+#### `src/components/SlideProjects.jsx` — Project Descriptions
+- **Federated Learning**: Removed `"on an HPC cluster"` reference; rewritten as `"across federated nodes"`.
+- **AsyncFlow Engine**: Description now reflects the completed 3-phase architecture (Phase 3 DLQ Replay shipped).
+
+### Removed
+- `src/components/Navbar.jsx` — no longer rendered (replaced by inline slide counter + dot navigation).
+- `src/components/About.jsx`, `Skills.jsx`, `Contact.jsx` — content absorbed into `SlideProfile.jsx` and `Hero.jsx`; original files retained but not imported.
+- `src/components/Footer.jsx` — credit strip now embedded in `SlideProjects.jsx` footer.
+
+### Milestone
+- **Portfolio architecture transitioned from vertical SPA (6 sections) to horizontal 3-slide carousel.**
+- Build verified: `✓ 33 modules transformed · built in 1.14s` — zero errors or warnings.
+
+---
+
 ## [v1.0] - 2026-08-18 🚀
 
 ### Added

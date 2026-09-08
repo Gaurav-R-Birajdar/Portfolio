@@ -9,8 +9,17 @@
     box-sizing: border-box;
   }
 
+  html, body {
+    height: 100%;
+    /* overflow-hidden removed: the carousel is the root scroller.
+     * Blocking overflow here would prevent snap scrolling. */
+  }
+
   html {
-    scroll-behavior: smooth;
+    /* Note: smooth scroll intentionally disabled here.
+     * The carousel uses element.scrollTo({ behavior: 'smooth' }) directly,
+     * so a global scroll-behavior can interfere with snap timing. */
+    scroll-behavior: auto;
   }
 
   body {
@@ -97,5 +106,58 @@
   }
   .section-enter.visible {
     @apply opacity-100 translate-y-0;
+  }
+
+  /* ── Scrollbar hiding utility ─────────────────────────────────────── */
+  .hide-scrollbar {
+    scrollbar-width: none;      /* Firefox */
+    -ms-overflow-style: none;   /* IE / Edge */
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;              /* Chrome / Safari */
+  }
+
+  /* ── Carousel scroll container (legacy — kept for reference) ─────────── */
+  /* NOTE: overflow-x scroll is now driven by Tailwind `overflow-x-auto`.
+   * This class is retained only for the snap-type declaration in case
+   * it is applied alongside Tailwind classes. */
+  .snap-container {
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* ── Individual slide ───────────────────────────────────────────────── */
+  .snap-slide {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+
+  /* ── Chevron navigation button ──────────────────────────────────────── */
+  .carousel-nav-btn {
+    @apply fixed top-1/2 -translate-y-1/2 z-50
+           flex items-center justify-center
+           w-10 h-10 rounded-full
+           bg-white/[0.04] backdrop-blur-sm
+           border border-white/[0.08]
+           text-slate-500
+           hover:text-brand-300 hover:bg-brand-500/10 hover:border-brand-700/50
+           active:scale-90
+           transition-all duration-200;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  }
+  .carousel-nav-btn:disabled {
+    @apply pointer-events-none;
+  }
+
+  /* ── Dot indicators ─────────────────────────────────────────────────── */
+  .carousel-dot {
+    @apply w-1.5 h-1.5 rounded-full
+           bg-slate-700
+           hover:bg-brand-600
+           transition-all duration-300 cursor-pointer;
+  }
+  .carousel-dot-active {
+    @apply w-5 bg-brand-400;
+    box-shadow: 0 0 8px rgba(30, 173, 160, 0.6);
   }
 }

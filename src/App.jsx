@@ -1,27 +1,12 @@
 /**
  * App.jsx — Root application component.
- * Composes the full single-page portfolio layout.
+ *
+ * Architecture changed from vertical-scroll SPA to horizontal carousel.
+ * The Carousel component composes all three slides internally.
+ * Navbar and Footer are absorbed into slide-level components.
  */
-import Navbar   from './components/Navbar'
-import Hero     from './components/Hero'
-import About    from './components/About'
-import Skills   from './components/Skills'
-import Projects from './components/Projects'
-import Contact  from './components/Contact'
-import Footer   from './components/Footer'
+import Carousel from './components/Carousel'
 
 export default function App() {
-  return (
-    <div className="min-h-screen">
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
-  )
+  return <Carousel />
 }
