@@ -6,7 +6,60 @@ Versioning follows `v<major>.<prompt-iteration>` � every dev prompt increments
 
 ---
 
+## [v1.5] - 2026-09-30
+
+### Added
+
+#### `src/components/SlideConsulting.jsx` — NEW Slide 4: Freelance Architecture & Consulting
+- Brand-new 4th carousel slide targeting high-leverage freelance consulting engagements.
+- Three `ServiceCard` components: **Local LLM Pipeline Integration**, **Backend Hardening & Optimization**, **Agentic Workflow Design** — each with tags, bolt icon, and hover glassmorphism glow.
+- Premium **"Engage via Fiverr"** CTA block with emerald glassmorphism styling, ambient glow, and `// response within 24h` sub-copy.
+- **Metric strip** anchored to StreamerIQ production numbers: `12ms` queue isolation latency, `99%` quota reduction, `8,000+` fuzz tests.
+- Full section footer (matching Projects slide) and ambient glow blobs.
+
+#### `src/components/Hero.jsx` — Fiverr CTA in Contact Module
+- Added `FiverrIcon` (circular "F" badge SVG) and `hero-fiverr` link with emerald styling.
+- Added `hero-fiverr` entry to `CONTACT_LINKS`.
+
+#### `src/components/Navbar.jsx` — Consulting Nav Link & Fiverr CTA
+- Added `Consulting` to `NAV_LINKS` array.
+- Replaced single "Hire me" CTA with a dual-button group: **Hire on Fiverr** (emerald) + **Contact** (brand teal).
+
+### Changed
+
+#### `src/components/Hero.jsx` — Architect Positioning Overhaul
+- Headline: `Backend & AI Engineer` → `Backend & AI Architect`.
+- Sub-tagline: `Python · FastAPI · Redis · Local LLMs` → `Async Pipelines · FastAPI · Redis/ARQ · Local LLMs`.
+- Contact card description: generic "open for roles" → pain-point framing: "Struggling with brittle LLM wrappers, API quota exhaustion, or migrating to deterministic local pipelines?".
+- Availability badge: `open to roles` → `open to consulting & roles`.
+- Terminal `system_status.sh`: `$ status / ✓ Available for hire` → `$ consulting --status / ✓ Open for architecture consulting`. `whoami` updated to "Architect".
+
+#### `src/components/SlideProfile.jsx` — Architect Terminal Bio
+- Terminal: new `engineer.title = "Backend & AI Architect"` line added before `engineer.focus`.
+- `engineer.focus` values updated: `Deterministic GenAI` / `Scalable Backends` / `Federated Learning` → `Fault-Tolerant AI Pipelines` / `Async Orchestration` / `Deterministic LLM Systems`.
+- `engineer.education` updated to include `(2026)`.
+- `engineer.published` / `engineer.deploys_llms_locally` → replaced with `engineer.consulting_open = True` with inline comment `# Local LLM pipelines, async backends, agentic HITL`.
+- Stack: `Redis + RQ` → `Redis + ARQ`; `REST API Design` → `GitHub Actions`; `STT/TTS Pipelines` → `LangGraph paradigms`; `Vite` → `TypeScript`; `Docker` (frontend) → `Caddy`.
+- Stat pill: `Local LLM / Ollama · Llama 3.1` → `ARQ/Redis / Async Orchestration`.
+- Tagline: "provably correct, not probabilistically useful" → "mathematically fault-tolerant, not probabilistically hopeful".
+
+#### `src/components/SlideProjects.jsx` — Impact-First Case Studies
+- **StreamerIQ** added as the #1 project (Phase: `Open Architecture · Public ADRs`) with concrete production metrics: 12ms latency, 99% quota reduction, 8,000+ fuzz tests, 25/25 recovery.
+- **AsyncFlow Engine** reframed as "Enterprise AI Middleware · Proprietary" with HITL/Governance Interceptor copy.
+- **Vyngo**: strengthened with "Zero invalid SQL execution on 1,000+ test utterances".
+- **Federated Learning**: subtitle updated to include "IEEE Published". Description includes "formal-methods thinking to guarantee privacy bounds".
+- **TraceFlow Proxy** removed (StreamerIQ took slot 4; TraceFlow can be re-added later).
+
+#### `src/components/Carousel.jsx` — 4th Slide Integration
+- Imported `SlideConsulting`.
+- `SLIDE_LABELS`: `['Hero', 'Profile', 'Projects']` → `['Hero', 'Profile', 'Projects', 'Consulting']`.
+- `SLIDE_COUNT` auto-updated via array length.
+- Appended `#slide-consulting` snap section after `#slide-projects`.
+
+---
+
 ## [v1.4] - 2026-09-08
+
 
 ### Added
 

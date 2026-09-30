@@ -2,12 +2,13 @@
  * Hero.jsx — Slide 1: Hero & Conversion.
  *
  * Design intent:
- *   • Locked headline replaces rotating typewriter (brand dilution eliminated)
+ *   • Locked headline: Backend & AI Architect (architect-level positioning)
  *   • "Initiate Connection" contact module is front-and-center — visible on landing
  *   • Terminal system_status.sh block preserved as identity anchor
+ *   • Fiverr consulting CTA added to contact module
  *
- * Headline (LinkedIn 100-day experiment lock):
- *   Backend & AI Engineer | Python, FastAPI, Redis | Local LLMs
+ * Headline lock:
+ *   Backend & AI Architect | Asynchronous Pipelines | Deterministic LLM Orchestration
  */
 import { useState } from 'react'
 
@@ -28,6 +29,12 @@ const CONTACT_LINKS = [
     label: 'GitHub',
     href: 'https://github.com/Gaurav-R-Birajdar',
     icon: 'github',
+  },
+  {
+    id: 'hero-fiverr',
+    label: 'Hire on Fiverr',
+    href: 'https://www.fiverr.com/s/YLR8bBz',
+    icon: 'fiverr',
   },
   {
     id: 'hero-contact-form',
@@ -62,10 +69,18 @@ const FormIcon = () => (
   </svg>
 )
 
+/** Fiverr wordmark icon (simplified "F" badge) */
+const FiverrIcon = () => (
+  <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-.8 17.6H9.6v-6.4H8V9.6h1.6V8.8c0-1.76.72-2.8 2.8-2.8h1.68v1.6H13c-.8 0-.8.3-.8.88v.12h1.84l-.24 1.6H12.2v6.4z" />
+  </svg>
+)
+
 /** @param {{ type: string }} props */
 const ContactIcon = ({ type }) => {
   if (type === 'linkedin') return <LinkedInIcon />
   if (type === 'github')   return <GitHubIcon />
+  if (type === 'fiverr')   return <FiverrIcon />
   return <FormIcon />
 }
 
@@ -87,13 +102,13 @@ const GridDots = () => (
 const AvailabilityBadge = () => (
   <div
     className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/60 border border-emerald-700/40 text-emerald-400 text-xs font-mono"
-    aria-label="Currently available for new roles"
+    aria-label="Currently available for consulting and new roles"
   >
     <span className="relative flex h-2 w-2" aria-hidden="true">
       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
       <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
     </span>
-    available &middot; open to roles
+    available &middot; open to consulting & roles
   </div>
 )
 
@@ -124,13 +139,13 @@ export default function Hero() {
           <span className="gradient-text text-glow">Birajdar</span>
         </h1>
 
-        {/* Locked headline — LinkedIn 100-day experiment identity */}
+        {/* Locked headline — architect-level positioning */}
         <div className="flex flex-col items-center gap-1 animate-fade-in" style={{ animationDelay: '0.2s' }}>
           <p className="text-2xl sm:text-3xl font-mono font-semibold text-brand-300 tracking-tight">
-            Backend &amp; AI Engineer
+            Backend &amp; AI Architect
           </p>
           <p className="text-sm sm:text-base font-mono text-slate-500">
-            Python &nbsp;·&nbsp; FastAPI &nbsp;·&nbsp; Redis &nbsp;·&nbsp; Local LLMs
+            Async Pipelines &nbsp;·&nbsp; FastAPI &nbsp;·&nbsp; Redis/ARQ &nbsp;·&nbsp; Local LLMs
           </p>
         </div>
 
@@ -153,9 +168,10 @@ export default function Hero() {
               Initiate Connection
             </h2>
             <p className="text-slate-400 text-xs leading-relaxed">
-              Currently open for roles in{' '}
-              <span className="text-brand-300 font-mono">Applied AI</span> and{' '}
-              <span className="text-brand-300 font-mono">Backend Engineering</span>.
+              Struggling with{' '}
+              <span className="text-brand-300 font-mono">brittle LLM wrappers</span>,{' '}
+              <span className="text-brand-300 font-mono">API quota exhaustion</span>, or migrating to{' '}
+              <span className="text-brand-300 font-mono">deterministic local pipelines</span>? I can help.
             </p>
           </div>
 
@@ -188,6 +204,19 @@ export default function Hero() {
               <GitHubIcon /> GitHub
             </a>
             <a
+              id="hero-fiverr"
+              href="https://www.fiverr.com/s/YLR8bBz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-mono font-medium px-4 py-2 rounded-lg
+                         bg-emerald-950/60 border border-emerald-700/50 text-emerald-400
+                         hover:bg-emerald-900/40 hover:border-emerald-500/70 hover:text-emerald-300
+                         hover:shadow-[0_0_18px_rgba(52,211,153,0.2)] active:scale-95 transition-all duration-200"
+              aria-label="Hire on Fiverr for backend/AI consulting"
+            >
+              <FiverrIcon /> Hire on Fiverr
+            </a>
+            <a
               id="hero-contact-form"
               href="https://forms.gle/KDPfEN8tS2L5fbvU7"
               target="_blank"
@@ -218,13 +247,13 @@ export default function Hero() {
           <pre className="text-xs leading-relaxed">
             <span className="text-brand-400">$</span>
             <span className="text-slate-300"> whoami</span>{'\n'}
-            <span className="text-slate-400">  → Backend &amp; AI Engineer @ Navi Mumbai, India</span>{'\n'}
+            <span className="text-slate-400">  → Backend &amp; AI Architect @ Navi Mumbai, India</span>{'\n'}
             <span className="text-brand-400">$</span>
-            <span className="text-slate-300"> skills --top</span>{'\n'}
-            <span className="text-slate-400">  → Python · FastAPI · Redis · Local LLMs</span>{'\n'}
+            <span className="text-slate-300"> stack --top</span>{'\n'}
+            <span className="text-slate-400">  → FastAPI · Redis/ARQ · Ollama · Pydantic</span>{'\n'}
             <span className="text-brand-400">$</span>
-            <span className="text-slate-300"> status</span>{'\n'}
-            <span className="text-green-400">  ✓ Available for hire</span>
+            <span className="text-slate-300"> consulting --status</span>{'\n'}
+            <span className="text-green-400">  ✓ Open for architecture consulting</span>
           </pre>
         </div>
 

@@ -19,19 +19,39 @@
 /** @type {Project[]} */
 const PROJECTS = [
   {
-    id: 'asyncflow-engine',
-    title: 'AsyncFlow Engine',
-    subtitle: 'Deterministic LLM Orchestrator',
-    phase: 'Phase 3 · DLQ Replay ✓',
+    id: 'streameriq',
+    title: 'StreamerIQ',
+    subtitle: 'Production Architecture Case Study',
+    phase: 'Open Architecture · Public ADRs',
     description:
-      'A 3-phase asynchronous AI workflow engine: Redis Queue orchestration → Pydantic JSON schema enforcement → Dead-Letter Queue (DLQ) Replay for fault-tolerant LLM job recovery. Eliminates API timeouts and LLM hallucinations by constraining local model output to machine-readable schemas.',
+      'Zero-cloud streaming analytics backend engineered for fault-tolerance under real-world failure modes. The Problem: local LLM inference blocks web threads, exhausts external API quotas, and crashes on hallucinated JSON. The Architecture: Redis/ARQ task queue (12ms isolation latency), async-safe TTL cache layer (99% quota reduction), and 8,000+ property-based fuzz tests guaranteeing zero worker crashes on malformed JSON. 25/25 stateful recovery tests passing.',
     tags: [
       { label: 'Python' },
       { label: 'FastAPI' },
-      { label: 'Redis' },
-      { label: 'RQ' },
+      { label: 'Redis/ARQ' },
+      { label: 'Ollama · llama3.1:8b' },
+      { label: 'SQLite WAL' },
+      { label: 'Pydantic' },
+      { label: 'Property-Based Fuzzing' },
+    ],
+    links: [
+      { label: 'View ADRs on GitHub', href: 'https://github.com/Gaurav-R-Birajdar/StreamerIQ-Architecture', icon: 'github' },
+    ],
+  },
+  {
+    id: 'asyncflow-engine',
+    title: 'AsyncFlow Engine',
+    subtitle: 'Enterprise AI Middleware · Proprietary',
+    phase: 'Phase 3 · DLQ Replay ✓',
+    description:
+      'Local AI middleware pipeline built for enterprise compliance and deterministic execution. Governance Interceptor: FastMCP-style interception layer detecting PII via strict Pydantic schemas, mutating payloads in real-time with strict JSON-RPC custody. HITL: Stateful SQLite checkpointing allows ARQ jobs to pause for human approval and resume exact mid-flight states via FastAPI endpoints.',
+    tags: [
+      { label: 'Python' },
+      { label: 'FastAPI' },
+      { label: 'Redis/ARQ' },
       { label: 'Llama 3.1' },
       { label: 'Pydantic' },
+      { label: 'SQLite' },
       { label: 'DLQ Replay' },
     ],
     links: [
@@ -43,7 +63,7 @@ const PROJECTS = [
     title: 'Vyngo Voice Search',
     subtitle: 'Deterministic GenAI',
     description:
-      "A hallucination-proof voice-based vehicle search using a strict 'Filters, not Vibes' architecture. Separates probabilistic LLM reasoning from deterministic SQLite database states — every query is schema-validated before hitting the DB.",
+      "Hallucination-proof voice-based vehicle search using a strict 'Filters, not Vibes' architecture. Separates probabilistic LLM reasoning from deterministic SQLite database states — every query schema-validated before hitting the DB. Zero invalid SQL execution on 1,000+ test utterances.",
     tags: [
       { label: 'Python' },
       { label: 'Llama 3.1' },
@@ -59,9 +79,9 @@ const PROJECTS = [
   {
     id: 'federated-learning-privacy',
     title: 'Federated Learning Privacy Allocation',
-    subtitle: 'Distributed Systems Research',
+    subtitle: 'Distributed Systems Research · IEEE Published',
     description:
-      'Dynamic differential-privacy budget allocation framework for distributed medical image analysis across federated nodes. Balances model utility with strict privacy constraints — published IEEE proceedings.',
+      'Dynamic differential-privacy budget allocation framework for distributed medical image analysis across federated nodes. Balances model utility with strict privacy constraints. Demonstrates applied formal-methods thinking to guarantee privacy bounds — published IEEE proceedings.',
     tags: [
       { label: 'Python' },
       { label: 'Federated Learning' },
@@ -70,22 +90,6 @@ const PROJECTS = [
     ],
     links: [
       { label: 'IEEE Paper', href: 'https://ieeexplore.ieee.org/abstract/document/11330959', icon: 'paper' },
-    ],
-  },
-  {
-    id: 'traceflow-proxy',
-    title: 'TraceFlow Proxy',
-    subtitle: 'Zero-Cloud Observability',
-    description:
-      'A local-first observability layer that intercepts LLM calls and enforces deterministic Pydantic schemas to catch hallucination drift. Tracks sub-millisecond inference latency via asynchronous SQLite WAL writes without blocking the main event loop.',
-    tags: [
-      { label: 'Python' },
-      { label: 'FastAPI' },
-      { label: 'SQLite WAL' },
-      { label: 'Pydantic' },
-    ],
-    links: [
-      { label: 'GitHub Repository', href: 'https://github.com/Gaurav-R-Birajdar/TraceFlow-Prox', icon: 'github' },
     ],
   },
 ]

@@ -22,36 +22,36 @@ const STACK = [
     id: 'applied-ai',
     category: 'Applied AI',
     items: [
-      { name: 'Llama 3.1' },
-      { name: 'Ollama' },
-      { name: 'STT / TTS Pipelines' },
+      { name: 'Llama 3.1 (Ollama)' },
+      { name: 'LiteLLM' },
+      { name: 'LangGraph paradigms' },
       { name: 'Federated Learning' },
       { name: 'Differential Privacy' },
-      { name: 'Pydantic' },
+      { name: 'Pydantic Schemas' },
     ],
   },
   {
     id: 'backend',
-    category: 'Backend',
+    category: 'Backend & Infra',
     items: [
       { name: 'Python' },
       { name: 'FastAPI' },
-      { name: 'Redis + RQ' },
-      { name: 'SQLite' },
+      { name: 'Redis + ARQ' },
+      { name: 'SQLite WAL' },
       { name: 'Docker' },
-      { name: 'REST API Design' },
+      { name: 'GitHub Actions' },
     ],
   },
   {
     id: 'frontend',
     category: 'Frontend & Tooling',
     items: [
-      { name: 'React' },
+      { name: 'React + Vite' },
+      { name: 'TypeScript' },
       { name: 'Tailwind CSS' },
-      { name: 'Vite' },
       { name: 'Git' },
       { name: 'Linux' },
-      { name: 'Docker' },
+      { name: 'Caddy' },
     ],
   },
 ]
@@ -89,7 +89,7 @@ const StackColumn = ({ category, index }) => (
 const STATS = [
   { label: 'M.Tech', sub: 'Computer Engineering' },
   { label: 'IEEE',   sub: 'Published Researcher' },
-  { label: 'Local LLM', sub: 'Ollama · Llama 3.1' },
+  { label: 'ARQ/Redis', sub: 'Async Orchestration' },
 ]
 
 // ─── SlideProfile ─────────────────────────────────────────────────────────────
@@ -134,32 +134,33 @@ export default function SlideProfile() {
               <span className="text-brand-500">{'>>> '}</span>
               <span className="text-slate-300">engineer = Profile(name=</span>
               <span className="text-emerald-400">&quot;Gaurav R. Birajdar&quot;</span>
-              <span className="text-slate-300">){'\n'}</span>
+              <span className="text-slate-300">){`\n`}</span>
 
               <span className="text-brand-500">{'>>> '}</span>
-              <span className="text-slate-300">engineer.focus{'\n'}</span>
+              <span className="text-slate-300">engineer.title{`\n`}</span>
+              <span className="text-slate-400">{'  '}</span>
+              <span className="text-amber-300">&quot;Backend &amp; AI Architect&quot;</span>
+              <span className="text-slate-400">{`\n\n`}</span>
+
+              <span className="text-brand-500">{'>>> '}</span>
+              <span className="text-slate-300">engineer.focus{`\n`}</span>
               <span className="text-slate-400">{'  '}[</span>
-              <span className="text-amber-300">&quot;Deterministic GenAI&quot;</span>
+              <span className="text-amber-300">&quot;Fault-Tolerant AI Pipelines&quot;</span>
               <span className="text-slate-400">, </span>
-              <span className="text-amber-300">&quot;Scalable Backends&quot;</span>
-              <span className="text-slate-400">,{'\n'}</span>
+              <span className="text-amber-300">&quot;Async Orchestration&quot;</span>
+              <span className="text-slate-400">,{`\n`}</span>
               <span className="text-slate-400">{'   '}</span>
-              <span className="text-amber-300">&quot;Federated Learning&quot;</span>
-              <span className="text-slate-400">]{'\n\n'}</span>
+              <span className="text-amber-300">&quot;Deterministic LLM Systems&quot;</span>
+              <span className="text-slate-400">]{`\n\n`}</span>
 
               <span className="text-brand-500">{'>>> '}</span>
-              <span className="text-slate-300">engineer.education{'\n'}</span>
-              <span className="text-slate-400">{'  '}&quot;M.Tech · Computer Engineering&quot;{'\n\n'}</span>
+              <span className="text-slate-300">engineer.education{`\n`}</span>
+              <span className="text-slate-400">{'  '}&quot;M.Tech · Computer Engineering (2026)&quot;{`\n\n`}</span>
 
               <span className="text-brand-500">{'>>> '}</span>
-              <span className="text-slate-300">engineer.published{'\n'}</span>
+              <span className="text-slate-300">engineer.consulting_open{`\n`}</span>
               <span className="text-emerald-400">{'  '}True</span>
-              <span className="text-slate-500">  # IEEE · Federated Learning + Differential Privacy{'\n\n'}</span>
-
-              <span className="text-brand-500">{'>>> '}</span>
-              <span className="text-slate-300">engineer.deploys_llms_locally{'\n'}</span>
-              <span className="text-emerald-400">{'  '}True</span>
-              <span className="text-slate-500">  # Ollama · Llama 3.1 · Private Inference{'\n'}</span>
+              <span className="text-slate-500">  # Local LLM pipelines, async backends, agentic HITL{`\n`}</span>
 
               <span className="text-brand-400 animate-blink">█</span>
             </pre>
@@ -200,11 +201,11 @@ export default function SlideProfile() {
 
           {/* Condensed tagline */}
           <p className="text-slate-500 text-sm leading-relaxed font-mono">
-            // M.Tech graduate · research-to-production engineer ·<br />
-            // biased toward systems that are{' '}
-            <span className="text-brand-400">provably correct</span>
+            // M.Tech graduate · zero-cloud architect ·<br />
+            // engineers systems that are{' '}
+            <span className="text-brand-400">mathematically fault-tolerant</span>
             {', not '}
-            <span className="text-brand-400">probabilistically useful</span>
+            <span className="text-brand-400">probabilistically hopeful</span>
           </p>
         </div>
 

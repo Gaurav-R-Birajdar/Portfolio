@@ -13,12 +13,13 @@
  * and sits above the scroll layer without interfering with it.
  */
 import { useState, useRef, useCallback, useEffect } from 'react'
-import Hero          from './Hero'
-import SlideProfile  from './SlideProfile'
-import SlideProjects from './SlideProjects'
+import Hero             from './Hero'
+import SlideProfile     from './SlideProfile'
+import SlideProjects    from './SlideProjects'
+import SlideConsulting  from './SlideConsulting'
 
 // ─── Slide labels (for counter / dot aria) ───────────────────────────────────
-const SLIDE_LABELS = ['Hero', 'Profile', 'Projects']
+const SLIDE_LABELS = ['Hero', 'Profile', 'Projects', 'Consulting']
 const SLIDE_COUNT  = SLIDE_LABELS.length
 
 // ─── Chevron SVG ──────────────────────────────────────────────────────────────
@@ -144,6 +145,16 @@ export default function Carousel() {
           aria-label="Slide: Projects"
         >
           <SlideProjects />
+        </section>
+
+        {/* ── SLIDE 4: Freelance Architecture & Consulting ─────────────────── */}
+        <section
+          id="slide-consulting"
+          className="min-w-full flex-shrink-0 snap-center h-screen overflow-y-auto"
+          role="group"
+          aria-label="Slide: Consulting"
+        >
+          <SlideConsulting />
         </section>
       </div>
 

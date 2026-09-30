@@ -5,10 +5,11 @@
 import { useState, useEffect } from 'react'
 
 const NAV_LINKS = [
-  { label: 'About',    href: '#about' },
-  { label: 'Skills',   href: '#skills' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Contact',  href: '#contact' },
+  { label: 'About',       href: '#about' },
+  { label: 'Skills',      href: '#skills' },
+  { label: 'Projects',    href: '#projects' },
+  { label: 'Consulting',  href: '#consulting' },
+  { label: 'Contact',     href: '#contact' },
 ]
 
 export default function Navbar() {
@@ -54,13 +55,24 @@ export default function Navbar() {
         </ul>
 
         {/* CTA */}
-        <a
-          href="#contact"
-          className="hidden md:inline-flex items-center gap-2 px-4 py-1.5 rounded-lg border border-brand-500/40 text-brand-400 text-sm font-medium
-                     hover:bg-brand-500/10 hover:border-brand-400 transition-all duration-200"
-        >
-          Hire me
-        </a>
+        <div className="hidden md:flex items-center gap-2">
+          <a
+            href="https://www.fiverr.com/s/YLR8bBz"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg border border-emerald-700/40 text-emerald-400 text-sm font-medium
+                       hover:bg-emerald-950/40 hover:border-emerald-500/60 transition-all duration-200"
+          >
+            Hire on Fiverr
+          </a>
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-lg border border-brand-500/40 text-brand-400 text-sm font-medium
+                       hover:bg-brand-500/10 hover:border-brand-400 transition-all duration-200"
+          >
+            Contact
+          </a>
+        </div>
 
         {/* Mobile burger */}
         <button
